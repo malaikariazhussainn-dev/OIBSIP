@@ -1,235 +1,500 @@
-/* ================================
-   General Page Styling
-================================ */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✦ prism · calc</title>
+  <style>
+    /* ================================
+       General Page Styling
+    ================================ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at 20% 30%, #1e2b3c, #0f1722);
+      font-family: 'Segoe UI', 'Poppins', system-ui, sans-serif;
+      padding: 1rem;
+      animation: breathe 8s ease-in-out infinite alternate;
+    }
 
-body {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f1f3f6;
-    font-family: Arial, sans-serif;
-}
+    @keyframes breathe {
+      0% { background: radial-gradient(circle at 20% 30%, #1e2b3c, #0f1722); }
+      100% { background: radial-gradient(circle at 80% 70%, #1e2b3c, #121b2b); }
+    }
 
-
-/* ================================
-   Calculator
-================================ */
-
-.calculator {
-    width: 340px;
-    padding: 20px;
-    background-color: #222;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-
-/* ================================
-   Display
-================================ */
-
-.display {
-    margin-bottom: 20px;
-}
-
-#display {
-
-
-    width: 100%;
-    height: 70px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 10px;
-    outline: none;
-
-    background-color: #f8f9fa;
-    color: #222;
-
-    font-size: 32px;
-    text-align: right;
-overflow-x: auto;
-white-space: nowrap;
-}
-
-
-/* ================================
-   Buttons Grid
-================================ */
-
-.buttons {
-    display: grid;
-
-    /* 4 equal columns */
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 10px;
-}
-
-
-/* ================================
-   All Buttons
-================================ */
-
-button {
-    height: 60px;
-    border: none;
-    border-radius: 10px;
-
-    background-color: #444;
-    color: white;
-
-    font-size: 20px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: transform 0.1s ease,
-                background-color 0.2s ease;
-}
-
-
-/* Button Hover */
-
-button:hover {
-    background-color: #555;
-}
-
-
-/* Button Press */
-
-button:active {
-    transform: scale(0.95);
-}
-
-
-/* ================================
-   Number Buttons
-================================ */
-
-.number {
-    background-color: #333;
-}
-
-
-/* ================================
-   Operator Buttons
-================================ */
-
-.operator {
-    background-color: #ff9500;
-}
-
-.operator:hover {
-    background-color: #e68600;
-}
-
-
-/* ================================
-   Clear Button
-================================ */
-
-.clear {
-    background-color: #d9534f;
-}
-
-.clear:hover {
-    background-color: #c9302c;
-}
-
-
-/* ================================
-   Delete Button
-================================ */
-
-.delete {
-    background-color: #6c757d;
-}
-
-
-/* ================================
-   Equals Button
-================================ */
-
-.equals {
-    background-color: #28a745;
-}
-
-.equals:hover {
-    background-color: #218838;
-}
-
-
-/* ================================
-   Decimal Button
-================================ */
-
-.decimal {
-    background-color: #333;
-}
-
-
-/* ================================
-   Zero Button
-================================ */
-
-.zero {
-    grid-column: span 2;
-}
-
-/* ================================
-   Responsive Design
-================================ */
-
-@media (max-width: 400px) {
-
+    /* ================================
+       Calculator
+    ================================ */
     .calculator {
+      width: 360px;
+      padding: 24px 20px 28px;
+      background: rgba(22, 28, 40, 0.75);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-radius: 42px;
+      box-: 
+        0 30px 50px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+        0 0 30px rgba(120, 180, 255, 0.15);
+      transition: box-shadow 0.3s ease, transform 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .calculator:hover {
+      box-shadow: 
+        0 40px 70px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 215, 100, 0.15) inset,
+        0 0 45px rgba(200, 160, 255, 0.25);
+      transform: translateY(-4px);
+    }
+
+    /* ================================
+       Display
+    ================================ */
+    .display {
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+  #display {
+  width: 100%;
+  max-width: 100%;       /* Prevents escaping parent container */
+  box-sizing: border-box; /* Forces padding to stay inside width */
+  height: 80px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 28px;
+  outline: none;
+  background: rgba(12, 18, 28, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: #f0f6ff;
+  font-size: 36px;
+  font-weight: 500;
+  text-align: right;
+  overflow-x: auto;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+    0 0 20px rgba(0, 160, 255, 0.1);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  scrollbar-width: thin;
+  scrollbar-color: #4a6c8f transparent;
+}
+
+
+    /* ================================
+       Buttons Grid
+    ================================ */
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    /* ================================
+       All Buttons
+    ================================ */
+    button {
+      height: 64px;
+      border: none;
+      border-radius: 20px;
+      background: rgba(32, 42, 58, 0.7);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      color: #edf3ff;
+      font-size: 22px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.12s cubic-bezier(0.2, 0.9, 0.4, 1.1), 
+                  background 0.2s ease,
+                  box-shadow 0.25s ease,
+                  color 0.2s ease;
+      box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+      letter-spacing: 0.5px;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle shimmer overlay */
+    button::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.08), transparent 70%);
+      pointer-events: none;
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
+    }
+
+    button:hover::after {
+      opacity: 0.8;
+    }
+
+    button:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+    }
+
+    button:active {
+      transform: scale(0.94) translateY(1px);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+      transition-duration: 0.04s;
+    }
+
+    /* ================================
+       Number Buttons
+    ================================ */
+    .number {
+      background: rgba(42, 56, 78, 0.65);
+      backdrop-filter: blur(4px);
+      color: #d6e6ff;
+    }
+    .number:hover {
+      background: rgba(60, 80, 110, 0.8);
+      color: white;
+      box-shadow: 0 0 18px rgba(80, 160, 255, 0.2);
+    }
+
+    /* ================================
+       Operator Buttons
+    ================================ */
+    .operator {
+      background: linear-gradient(145deg, #f7a83e, #e08820);
+      color: #181f2a;
+      font-weight: 700;
+      box-shadow: 0 6px 14px rgba(255, 160, 30, 0.25);
+    }
+    .operator:hover {
+      background: linear-gradient(145deg, #ffb84d, #f09a2a);
+      box-shadow: 0 8px 24px rgba(255, 170, 50, 0.5), 0 0 0 1px rgba(255, 200, 100, 0.3);
+      color: #0b0f16;
+    }
+    .operator:active {
+      background: #d48a1e;
+    }
+
+    /* ================================
+       Clear Button
+    ================================ */
+    .clear {
+      background: linear-gradient(145deg, #e35f5f, #c0392b);
+      color: #ffe6e6;
+      box-shadow: 0 6px 14px rgba(220, 60, 60, 0.3);
+    }
+    .clear:hover {
+      background: linear-gradient(145deg, #ff6f6f, #d94434);
+      box-shadow: 0 8px 26px rgba(255, 70, 70, 0.5);
+      color: white;
+    }
+
+    /* ================================
+       Delete Button
+    ================================ */
+    .delete {
+      background: rgba(70, 90, 120, 0.6);
+      backdrop-filter: blur(4px);
+      color: #b8d0f0;
+    }
+    .delete:hover {
+      background: rgba(100, 130, 170, 0.7);
+      color: white;
+      box-shadow: 0 0 20px rgba(130, 180, 255, 0.2);
+    }
+
+    /* ================================
+       Equals Button
+    ================================ */
+    .equals {
+      background: linear-gradient(145deg, #38b87a, #1f8b5a);
+      color: #eafff0;
+      box-shadow: 0 6px 18px rgba(40, 200, 120, 0.3);
+    }
+    .equals:hover {
+      background: linear-gradient(145deg, #44d48a, #2a9f68);
+      box-shadow: 0 8px 30px rgba(60, 230, 140, 0.5);
+      color: white;
+    }
+
+    /* ================================
+       Decimal Button
+    ================================ */
+    .decimal {
+      background: rgba(42, 56, 78, 0.65);
+      color: #d6e6ff;
+    }
+    .decimal:hover {
+      background: rgba(60, 80, 110, 0.8);
+      color: white;
+    }
+
+    /* ================================
+       Zero Button
+    ================================ */
+    .zero {
+      grid-column: span 2;
+      background: rgba(42, 56, 78, 0.65);
+    }
+    .zero:hover {
+      background: rgba(60, 80, 110, 0.8);
+      box-shadow: 0 0 18px rgba(80, 160, 255, 0.15);
+    }
+
+    /* ================================
+       Responsive Design
+    ================================ */
+    @media (max-width: 400px) {
+      .calculator {
         width: 92%;
-        padding: 15px;
+        padding: 18px 14px 22px;
+        border-radius: 36px;
+      }
+      #display {
+        height: 70px;
+        font-size: 30px;
+        padding: 6px 16px;
+        border-radius: 24px;
+      }
+      button {
+        height: 58px;
+        font-size: 20px;
+        border-radius: 18px;
+      }
+      .buttons {
+        gap: 10px;
+      }
     }
 
-    #display {
-        height: 65px;
-        font-size: 28px;
-    }
-
-    button {
-        height: 55px;
-        font-size: 18px;
-    }
-
-    .buttons {
+    @media (max-width: 320px) {
+      .calculator {
+        width: 96%;
+        padding: 14px 10px 18px;
+        border-radius: 30px;
+      }
+      #display {
+        height: 62px;
+        font-size: 26px;
+        padding: 4px 14px;
+        border-radius: 20px;
+      }
+      button {
+        height: 52px;
+        font-size: 17px;
+        border-radius: 16px;
+      }
+      .buttons {
         gap: 8px;
+      }
     }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="display">
+      <input type="text" id="display" value="0" readonly />
+    </div>
+    <div class="buttons">
+      <!-- Row 1 -->
+      <button class="clear" data-value="C">AC</button>
+      <button class="delete" data-value="DEL">⌫</button>
+      <button class="operator" data-value="/">÷</button>
+      <button class="operator" data-value="*">×</button>
 
-}
+      <!-- Row 2 -->
+      <button class="number" data-value="7">7</button>
+      <button class="number" data-value="8">8</button>
+      <button class="number" data-value="9">9</button>
+      <button class="operator" data-value="-">−</button>
 
+      <!-- Row 3 -->
+      <button class="number" data-value="4">4</button>
+      <button class="number" data-value="5">5</button>
+      <button class="number" data-value="6">6</button>
+      <button class="operator" data-value="+">+</button>
 
-@media (max-width: 320px) {
+      <!-- Row 4 -->
+      <button class="number" data-value="1">1</button>
+      <button class="number" data-value="2">2</button>
+      <button class="number" data-value="3">3</button>
+      <button class="equals" data-value="=">=</button>
 
-    .calculator {
-        width: 95%;
-        padding: 12px;
-    }
+      <!-- Row 5 -->
+      <button class="number zero" data-value="0">0</button>
+      <button class="decimal" data-value=".">.</button>
+      <button class="equals" data-value="=">=</button>
+    </div>
+  </div>
 
-    #display {
-        height: 60px;
-        font-size: 24px;
-    }
+  <script>
+    (function() {
+      // ---------- core logic (unchanged) ----------
+      const display = document.getElementById('display');
+      const buttons = document.querySelectorAll('button');
 
-    button {
-        height: 50px;
-        font-size: 16px;
-    }
+      let currentInput = '0';
+      let previousInput = '';
+      let operator = null;
+      let shouldResetDisplay = false;
+      let justEvaluated = false;
 
-    .buttons {
-        gap: 6px;
-    }
+      function updateDisplay() {
+        display.value = currentInput;
+      }
 
-}
+      function handleNumber(value) {
+        if (justEvaluated) {
+          currentInput = value;
+          justEvaluated = false;
+          shouldResetDisplay = false;
+          updateDisplay();
+          return;
+        }
+
+        if (shouldResetDisplay) {
+          currentInput = value;
+          shouldResetDisplay = false;
+        } else {
+          if (currentInput === '0' && value !== '.') {
+            currentInput = value;
+          } else {
+            // Prevent multiple dots
+            if (value === '.' && currentInput.includes('.')) return;
+            currentInput += value;
+          }
+        }
+        updateDisplay();
+      }
+
+      function handleOperator(op) {
+        if (operator && !shouldResetDisplay) {
+          // If there's already an operator and we're typing, evaluate first
+          const result = calculate(parseFloat(previousInput), parseFloat(currentInput), operator);
+          currentInput = String(result);
+          updateDisplay();
+          previousInput = currentInput;
+        } else {
+          previousInput = currentInput;
+        }
+        operator = op;
+        shouldResetDisplay = true;
+        justEvaluated = false;
+      }
+
+      function calculate(a, b, op) {
+        switch (op) {
+          case '+': return a + b;
+          case '-': return a - b;
+          case '*': return a * b;
+          case '/': return b !== 0 ? a / b : 'Error';
+          default: return b;
+        }
+      }
+
+      function handleEquals() {
+        if (!operator || shouldResetDisplay) {
+          // If no operator or just reset, but we pressed '=' – treat as no-op or repeat last?
+          // For simplicity: if operator exists but shouldResetDisplay, ignore.
+          // But if justEvaluated is true, we might want to repeat last operation?
+          // We'll keep it simple: if operator and not shouldResetDisplay, evaluate.
+          if (operator && !shouldResetDisplay) {
+            // do nothing? Actually we want to evaluate if there's an operator.
+          } else {
+            return;
+          }
+        }
+
+        const prev = parseFloat(previousInput);
+        const curr = parseFloat(currentInput);
+        if (isNaN(prev) || isNaN(curr)) return;
+
+        const result = calculate(prev, curr, operator);
+        currentInput = String(result);
+        updateDisplay();
+        operator = null;
+        previousInput = '';
+        shouldResetDisplay = true;
+        justEvaluated = true;
+      }
+
+      function handleClear() {
+        currentInput = '0';
+        previousInput = '';
+        operator = null;
+        shouldResetDisplay = false;
+        justEvaluated = false;
+        updateDisplay();
+      }
+
+      function handleDelete() {
+        if (justEvaluated) {
+          handleClear();
+          return;
+        }
+        if (currentInput.length > 1) {
+          currentInput = currentInput.slice(0, -1);
+        } else {
+          currentInput = '0';
+        }
+        updateDisplay();
+      }
+
+      // ---------- attach events ----------
+      buttons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const value = this.dataset.value;
+
+          if (value === undefined) return;
+
+          if (this.classList.contains('number') || this.classList.contains('decimal')) {
+            handleNumber(value);
+          } else if (this.classList.contains('operator')) {
+            handleOperator(value);
+          } else if (this.classList.contains('equals')) {
+            handleEquals();
+          } else if (this.classList.contains('clear')) {
+            handleClear();
+          } else if (this.classList.contains('delete')) {
+            handleDelete();
+          }
+        });
+      });
+
+      // Keyboard support (optional, keeps core intact)
+      document.addEventListener('keydown', function(e) {
+        const key = e.key;
+        if (key >= '0' && key <= '9') {
+          handleNumber(key);
+        } else if (key === '.') {
+          handleNumber('.');
+        } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+          handleOperator(key);
+        } else if (key === 'Enter' || key === '=') {
+          e.preventDefault();
+          handleEquals();
+        } else if (key === 'Backspace') {
+          handleDelete();
+        } else if (key === 'Escape' || key === 'c' || key === 'C') {
+          handleClear();
+        }
+      });
+
+      // initial display
+      updateDisplay();
+    })();
+  </script>
+</body>
+</html>
