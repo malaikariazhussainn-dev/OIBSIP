@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="A beautiful and interactive task manager for organizing your daily tasks."
+    >
+
+    <title>TaskFlow — Smart To-Do List</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         MAIN APPLICATION
+    ========================================== -->
+
+    <main class="app">
+
+        <!-- ================================
+             HEADER
+        ================================= -->
+
+        <header class="app-header">
+
+            <div class="header-content">
+
+                <div class="brand">
+
+                    <div class="brand-icon">
+                        ✓
+                    </div>
+
+                    <div class="brand-text">
+                        <h1>TaskFlow</h1>
+                        <p>Organize your day beautifully.</p>
+                    </div>
+
+                </div>
+
+                <div class="header-status">
+                    <span class="status-dot"></span>
+                    <span>Stay productive</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================================
+             TASK CREATION
+        ================================= -->
+
+        <section class="task-creator">
+
+            <div class="section-heading">
+                <span class="heading-label">Today</span>
+
+                <h2>
+                    What will you accomplish?
+                </h2>
+
+                <p>
+                    Add a task and take the next step toward your goals.
+                </p>
+            </div>
+
+
+            <form
+                id="taskForm"
+                class="task-form"
+            >
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        +
+                    </span>
+
+                    <input
+                        type="text"
+                        id="taskInput"
+                        name="task"
+                        placeholder="Add a new task..."
+                        autocomplete="off"
+                        maxlength="200"
+                        required
+                    >
+
+                </div>
+
+                <button
+                    type="submit"
+                    id="addTaskBtn"
+                    class="add-task-btn"
+                >
+                    <span>Add Task</span>
+                    <span class="button-arrow">→</span>
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ================================
+             TASK LISTS
+        ================================= -->
+
+        <section class="task-board">
+
+
+
+<!-- =====================================================
+     STEP 12 � PRODUCTIVITY PROGRESS
+====================================================== -->
+
+<div class="productivity-progress">
+
+    <div class="progress-header">
+
+        <div>
+
+            <span class="progress-label">
+                Daily Progress
+            </span>
+
+            <span
+                id="progressMessage"
+                class="progress-message"
+            >
+                Let's get started 
+            </span>
+
+        </div>
+
+        <span
+            id="progressPercentage"
+            class="progress-percentage"
+        >
+            0%
+        </span>
+
+    </div>
+
+
+    <div
+        class="progress-track"
+        aria-label="Task completion progress"
+    >
+
+        <div
+            id="progressBar"
+            class="progress-bar"
+            style="width: 0%"
+        ></div>
+
+    </div>
+
+</div>
+
+
+            <!-- ============================
+                 PENDING TASKS
+            ============================= -->
+
+            <section
+                class="task-section pending-section"
+                aria-labelledby="pendingTitle"
+            >
+
+                <div class="list-header">
+
+                    <div class="list-title-group">
+
+                        <div class="list-icon pending-icon">
+                            ○
+                        </div>
+
+                        <div>
+                            <h2 id="pendingTitle">
+                                Pending Tasks
+                            </h2>
+
+                            <p>
+                                Tasks waiting for you
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="pendingCount"
+                        class="task-count"
+                    >
+                        0 pending
+                    </div>
+
+                </div>
+
+
+                <!-- Pending Tasks -->
+                <div
+                    id="pendingTasks"
+                    class="task-list"
+                    aria-live="polite"
+                >
+                    <!-- Tasks will be inserted here by JavaScript -->
+                </div>
+
+
+                <!-- Pending Empty State -->
+                <div
+                    id="pendingEmpty"
+                    class="empty-state"
+                >
+
+                    <div class="empty-icon">
+                        ✨
+                    </div>
+
+                    <h3>
+                        You're all caught up!
+                    </h3>
+
+                    <p>
+                        No pending tasks right now.
+                        Enjoy the moment or add something new.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- ============================
+                 COMPLETED TASKS
+            ============================= -->
+
+            <section
+                class="task-section completed-section"
+                aria-labelledby="completedTitle"
+            >
+
+                <div class="list-header">
+
+                    <div class="list-title-group">
+
+                        <div class="list-icon completed-icon">
+                            ✓
+                        </div>
+
+                        <div>
+                            <h2 id="completedTitle">
+                                Completed Tasks
+                            </h2>
+
+                            <p>
+                                Look at what you've accomplished
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="completedCount"
+                        class="task-count completed-count"
+                    >
+                        0 completed
+                    </div>
+
+                </div>
+
+
+                <!-- Completed Tasks -->
+                <div
+                    id="completedTasks"
+                    class="task-list"
+                    aria-live="polite"
+                >
+                    <!-- Completed tasks will be inserted here by JavaScript -->
+                </div>
+
+
+                <!-- Completed Empty State -->
+                <div
+                    id="completedEmpty"
+                    class="empty-state"
+                >
+
+                    <div class="empty-icon">
+                        🌱
+                    </div>
+
+                    <h3>
+                        Your achievements will appear here
+                    </h3>
+
+                    <p>
+                        Complete a task and watch your progress grow.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- ================================
+             FOOTER
+        ================================= -->
+
+        <footer class="app-footer">
+
+            <p>
+                Built for focus, designed for progress.
+            </p>
+
+            <span class="footer-symbol">
+                ✦
+            </span>
+
+        </footer>
+
+    </main>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>

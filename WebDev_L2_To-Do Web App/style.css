@@ -1,0 +1,3327 @@
+/* =========================================================
+   TASKFLOW — PREMIUM TODO APPLICATION
+   STEP 3: VISUAL DESIGN SYSTEM
+========================================================= */
+
+
+/* =========================================================
+   1. DESIGN TOKENS
+========================================================= */
+
+:root {
+
+    /* ---------- Colors ---------- */
+
+    --bg-primary: #080b16;
+    --bg-secondary: #0d1222;
+
+    --surface: rgba(255, 255, 255, 0.055);
+    --surface-hover: rgba(255, 255, 255, 0.085);
+
+    --border: rgba(255, 255, 255, 0.10);
+    --border-hover: rgba(255, 255, 255, 0.18);
+
+    --text-primary: #f8f9ff;
+    --text-secondary: #a8afc4;
+    --text-muted: #737b94;
+
+    --accent-primary: #8b5cf6;
+    --accent-secondary: #6366f1;
+    --accent-light: #a78bfa;
+
+    --success: #34d399;
+    --success-light: #6ee7b7;
+
+    --danger: #fb7185;
+    --warning: #fbbf24;
+
+    /* ---------- Gradients ---------- */
+
+    --gradient-primary:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #6366f1
+        );
+
+    --gradient-glow:
+        radial-gradient(
+            circle,
+            rgba(139, 92, 246, 0.20),
+            transparent 65%
+        );
+
+    --gradient-success:
+        linear-gradient(
+            135deg,
+            #34d399,
+            #10b981
+        );
+
+    /* ---------- Shadows ---------- */
+
+    --shadow-sm:
+        0 4px 20px rgba(0, 0, 0, 0.20);
+
+    --shadow-md:
+        0 15px 45px rgba(0, 0, 0, 0.30);
+
+    --shadow-lg:
+        0 25px 80px rgba(0, 0, 0, 0.40);
+
+    --shadow-accent:
+        0 10px 35px rgba(139, 92, 246, 0.25);
+
+    /* ---------- Radius ---------- */
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+
+    /* ---------- Motion ---------- */
+
+    --transition-fast:
+        0.2s ease;
+
+    --transition-normal:
+        0.35s ease;
+
+    --transition-smooth:
+        0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =========================================================
+   2. GLOBAL RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    color: var(--text-primary);
+
+    background:
+        var(--gradient-glow),
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(99, 102, 241, 0.12),
+            transparent 35%
+        ),
+        var(--bg-primary);
+
+    line-height: 1.6;
+
+    overflow-x: hidden;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* =========================================================
+   3. DECORATIVE BACKGROUND ATMOSPHERE
+========================================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    width: 450px;
+    height: 450px;
+
+    top: -180px;
+    left: -150px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(139, 92, 246, 0.16),
+            transparent 70%
+        );
+
+    filter: blur(10px);
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    animation:
+        floatingGlow 9s ease-in-out infinite alternate;
+}
+
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 500px;
+    height: 500px;
+
+    right: -200px;
+    bottom: -220px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(52, 211, 153, 0.10),
+            transparent 70%
+        );
+
+    filter: blur(15px);
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    animation:
+        floatingGlow 12s ease-in-out infinite alternate-reverse;
+}
+
+
+/* =========================================================
+   4. MAIN APPLICATION CONTAINER
+========================================================= */
+
+.app {
+
+    width: min(
+        1180px,
+        calc(100% - 40px)
+    );
+
+    margin: 0 auto;
+
+    padding:
+        50px 0 30px;
+}
+
+
+/* =========================================================
+   5. HEADER
+========================================================= */
+
+.app-header {
+
+    margin-bottom: 60px;
+}
+
+
+.header-content {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+/* ---------- Brand ---------- */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+}
+
+
+.brand-icon {
+
+    width: 52px;
+    height: 52px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 16px;
+
+    background:
+        var(--gradient-primary);
+
+    font-family:
+        "Outfit",
+        sans-serif;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    box-shadow:
+        var(--shadow-accent);
+
+    transform:
+        rotate(-4deg);
+
+    transition:
+        transform var(--transition-smooth),
+        box-shadow var(--transition-normal);
+}
+
+
+.brand:hover .brand-icon {
+
+    transform:
+        rotate(4deg)
+        scale(1.06);
+
+    box-shadow:
+        0 15px 45px
+        rgba(139, 92, 246, 0.40);
+}
+
+
+.brand-text h1 {
+
+    font-family:
+        "Outfit",
+        sans-serif;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.5px;
+}
+
+
+.brand-text p {
+
+    color:
+        var(--text-muted);
+
+    font-size: 13px;
+
+    margin-top: 1px;
+}
+
+
+/* ---------- Header Status ---------- */
+
+.header-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding:
+        9px 15px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    backdrop-filter:
+        blur(12px);
+
+    color:
+        var(--text-secondary);
+
+    font-size: 13px;
+}
+
+
+.status-dot {
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background:
+        var(--success);
+
+    box-shadow:
+        0 0 12px
+        rgba(52, 211, 153, 0.8);
+
+    animation:
+        pulse 2s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   6. TASK CREATOR
+========================================================= */
+
+.task-creator {
+
+    margin-bottom: 55px;
+}
+
+
+.section-heading {
+
+    max-width: 700px;
+
+    margin-bottom: 25px;
+}
+
+
+.heading-label {
+
+    display: inline-block;
+
+    margin-bottom: 9px;
+
+    color:
+        var(--accent-light);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+}
+
+
+.section-heading h2 {
+
+    font-family:
+        "Outfit",
+        sans-serif;
+
+    font-size:
+        clamp(32px, 5vw, 52px);
+
+    line-height: 1.08;
+
+    letter-spacing: -1.5px;
+
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            120deg,
+            #ffffff 20%,
+            #b9b8ff 70%,
+            #a78bfa
+        );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    -webkit-text-fill-color:
+        transparent;
+}
+
+
+.section-heading p {
+
+    margin-top: 13px;
+
+    color:
+        var(--text-secondary);
+
+    font-size: 15px;
+
+    max-width: 560px;
+}
+
+
+/* =========================================================
+   7. TASK INPUT FORM
+========================================================= */
+
+.task-form {
+
+    display: flex;
+
+    gap: 12px;
+
+    padding: 10px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius-lg);
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    backdrop-filter:
+        blur(20px);
+
+    box-shadow:
+        var(--shadow-md);
+
+    transition:
+        border-color var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+
+.task-form:focus-within {
+
+    border-color:
+        rgba(139, 92, 246, 0.45);
+
+    box-shadow:
+        var(--shadow-md),
+        0 0 0 4px
+        rgba(139, 92, 246, 0.06);
+}
+
+
+.input-wrapper {
+
+    position: relative;
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+}
+
+
+.input-icon {
+
+    position: absolute;
+
+    left: 18px;
+
+    color:
+        var(--accent-light);
+
+    font-size: 22px;
+
+    pointer-events: none;
+}
+
+
+#taskInput {
+
+    width: 100%;
+
+    padding:
+        16px 18px 16px 48px;
+
+    border: none;
+
+    outline: none;
+
+    border-radius:
+        var(--radius-md);
+
+    background:
+        transparent;
+
+    color:
+        var(--text-primary);
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 15px;
+}
+
+
+#taskInput::placeholder {
+
+    color:
+        var(--text-muted);
+}
+
+
+.add-task-btn {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    min-width: 145px;
+
+    padding:
+        0 22px;
+
+    border: none;
+
+    border-radius:
+        var(--radius-md);
+
+    background:
+        var(--gradient-primary);
+
+    color: white;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        var(--shadow-accent);
+
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-normal);
+}
+
+
+.add-task-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 15px 40px
+        rgba(139, 92, 246, 0.38);
+}
+
+
+.add-task-btn:active {
+
+    transform:
+        translateY(0)
+        scale(0.98);
+}
+
+
+.button-arrow {
+
+    font-size: 18px;
+
+    transition:
+        transform var(--transition-fast);
+}
+
+
+.add-task-btn:hover .button-arrow {
+
+    transform:
+        translateX(4px);
+}
+
+
+/* =========================================================
+   8. TASK BOARD
+========================================================= */
+
+.task-board {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+
+/* =========================================================
+   9. TASK SECTION
+========================================================= */
+
+.task-section {
+
+    position: relative;
+
+    min-height: 350px;
+
+    padding: 25px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius-xl);
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        var(--shadow-sm);
+
+    overflow: hidden;
+}
+
+
+.task-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(139, 92, 246, 0.5),
+            transparent
+        );
+
+    opacity: 0.6;
+}
+
+
+/* =========================================================
+   10. LIST HEADER
+========================================================= */
+
+.list-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+
+.list-title-group {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+
+.list-icon {
+
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius:
+        13px;
+
+    font-size: 21px;
+
+    font-weight: 700;
+}
+
+
+.pending-icon {
+
+    color:
+        var(--accent-light);
+
+    background:
+        rgba(139, 92, 246, 0.12);
+}
+
+
+.completed-icon {
+
+    color:
+        var(--success-light);
+
+    background:
+        rgba(52, 211, 153, 0.11);
+}
+
+
+.list-title-group h2 {
+
+    font-family:
+        "Outfit",
+        sans-serif;
+
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+
+.list-title-group p {
+
+    margin-top: 2px;
+
+    color:
+        var(--text-muted);
+
+    font-size: 12px;
+}
+
+
+.task-count {
+
+    padding:
+        6px 10px;
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(139, 92, 246, 0.10);
+
+    color:
+        var(--accent-light);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+.completed-count {
+
+    color:
+        var(--success-light);
+
+    background:
+        rgba(52, 211, 153, 0.09);
+}
+
+
+/* =========================================================
+   11. TASK LIST
+========================================================= */
+
+.task-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   12. EMPTY STATES
+========================================================= */
+
+.empty-state {
+
+    min-height: 220px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    text-align: center;
+
+    padding: 30px 15px;
+
+    color:
+        var(--text-secondary);
+}
+
+
+.empty-icon {
+
+    width: 58px;
+    height: 58px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin-bottom: 15px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border:
+        1px solid var(--border);
+
+    font-size: 25px;
+
+    animation:
+        gentleFloat 4s ease-in-out infinite;
+}
+
+
+.empty-state h3 {
+
+    font-family:
+        "Outfit",
+        sans-serif;
+
+    font-size: 16px;
+
+    color:
+        var(--text-primary);
+
+    margin-bottom: 6px;
+}
+
+
+.empty-state p {
+
+    max-width: 270px;
+
+    color:
+        var(--text-muted);
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   13. FOOTER
+========================================================= */
+
+.app-footer {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding-top: 35px;
+
+    color:
+        var(--text-muted);
+
+    font-size: 12px;
+}
+
+
+.footer-symbol {
+
+    color:
+        var(--accent-light);
+
+    animation:
+        pulse 2.5s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   14. ANIMATIONS
+========================================================= */
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.65;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
+
+
+@keyframes floatingGlow {
+
+    from {
+        transform:
+            translate3d(0, 0, 0)
+            scale(1);
+    }
+
+    to {
+        transform:
+            translate3d(35px, 25px, 0)
+            scale(1.12);
+    }
+}
+
+
+@keyframes gentleFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-5px);
+    }
+}
+
+
+/* =========================================================
+   15. RESPONSIVE DESIGN — TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .app {
+        width:
+            min(
+                100% - 30px,
+                700px
+            );
+
+        padding-top:
+            35px;
+    }
+
+
+    .task-board {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .task-section {
+
+        min-height:
+            300px;
+    }
+}
+
+
+/* =========================================================
+   16. RESPONSIVE DESIGN — MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .app {
+
+        width:
+            calc(100% - 24px);
+
+        padding:
+            25px 0 20px;
+    }
+
+
+    .app-header {
+
+        margin-bottom:
+            40px;
+    }
+
+
+    .header-content {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap: 18px;
+    }
+
+
+    .brand-icon {
+
+        width: 46px;
+        height: 46px;
+
+        font-size: 22px;
+    }
+
+
+    .brand-text h1 {
+
+        font-size: 22px;
+    }
+
+
+    .section-heading h2 {
+
+        font-size:
+            clamp(
+                32px,
+                10vw,
+                43px
+            );
+    }
+
+
+    .task-form {
+
+        flex-direction:
+            column;
+
+        padding:
+            8px;
+    }
+
+
+    .add-task-btn {
+
+        min-height:
+            52px;
+
+        width:
+            100%;
+    }
+
+
+    .task-section {
+
+        padding:
+            20px;
+
+        border-radius:
+            24px;
+    }
+
+
+    .list-header {
+
+        align-items:
+            flex-start;
+    }
+
+
+    .list-title-group {
+
+        gap:
+            10px;
+    }
+
+
+    .list-icon {
+
+        width:
+            38px;
+
+        height:
+            38px;
+    }
+
+
+    .list-title-group h2 {
+
+        font-size:
+            15px;
+    }
+
+
+    .task-count {
+
+        font-size:
+            10px;
+
+        padding:
+            5px 8px;
+    }
+}
+
+
+/* =========================================================
+   17. ACCESSIBILITY
+========================================================= */
+
+button:focus-visible,
+input:focus-visible {
+
+    outline:
+        2px solid var(--accent-light);
+
+    outline-offset:
+        3px;
+}
+
+
+/* =========================================================
+   18. REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        scroll-behavior:
+            auto !important;
+
+        transition-duration:
+            0.01ms !important;
+    }
+}
+
+
+/* =========================================================
+   STEP 5 — ANIMATED TASK CARDS
+========================================================= */
+
+
+/* =========================================================
+   1. TASK CARD
+========================================================= */
+
+.task-item {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 15px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-md);
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    backdrop-filter:
+        blur(12px);
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.12);
+
+    animation:
+        taskAppear 0.45s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        both;
+
+    transition:
+        transform var(--transition-smooth),
+        background var(--transition-normal),
+        border-color var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+
+/* ---------- Card hover ---------- */
+
+.task-item:hover {
+
+    transform:
+        translateY(-2px)
+        translateX(2px);
+
+    background:
+        var(--surface-hover);
+
+    border-color:
+        var(--border-hover);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0, 0, 0, 0.22);
+}
+
+
+/* =========================================================
+   2. TASK CONTENT
+========================================================= */
+
+.task-content {
+
+    min-width: 0;
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+
+/* =========================================================
+   3. COMPLETE TOGGLE
+========================================================= */
+
+.complete-toggle {
+
+    flex-shrink: 0;
+
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+
+    place-items: center;
+
+    padding: 0;
+
+    border: 1.5px solid
+        rgba(167, 139, 250, 0.55);
+
+    border-radius: 50%;
+
+    background:
+        rgba(139, 92, 246, 0.07);
+
+    color: transparent;
+
+    cursor: pointer;
+
+    transition:
+        transform var(--transition-fast),
+        background var(--transition-normal),
+        border-color var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+
+/* ---------- Toggle hover ---------- */
+
+.complete-toggle:hover {
+
+    transform:
+        scale(1.1);
+
+    border-color:
+        var(--accent-light);
+
+    background:
+        rgba(139, 92, 246, 0.16);
+
+    box-shadow:
+        0 0 18px
+        rgba(139, 92, 246, 0.20);
+}
+
+
+/* ---------- Checkmark ---------- */
+
+.checkmark {
+
+    opacity: 0;
+
+    transform:
+        scale(0.3)
+        rotate(-20deg);
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    transition:
+        opacity var(--transition-fast),
+        transform var(--transition-smooth);
+}
+
+
+/* =========================================================
+   4. TASK DETAILS
+========================================================= */
+
+.task-details {
+
+    min-width: 0;
+
+    flex: 1;
+}
+
+
+.task-text {
+
+    overflow:
+        hidden;
+
+    color:
+        var(--text-primary);
+
+    font-size:
+        14px;
+
+    font-weight:
+        500;
+
+    line-height:
+        1.45;
+
+    text-overflow:
+        ellipsis;
+
+    white-space:
+        nowrap;
+}
+
+
+.task-time {
+
+    display:
+        block;
+
+    margin-top:
+        3px;
+
+    color:
+        var(--text-muted);
+
+    font-size:
+        10px;
+}
+
+
+/* =========================================================
+   5. TASK ACTIONS
+========================================================= */
+
+.task-actions {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        6px;
+
+    flex-shrink:
+        0;
+}
+
+
+.task-actions button {
+
+    border:
+        1px solid transparent;
+
+    border-radius:
+        9px;
+
+    padding:
+        7px 9px;
+
+    background:
+        transparent;
+
+    color:
+        var(--text-muted);
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size:
+        11px;
+
+    font-weight:
+        600;
+
+    cursor:
+        pointer;
+
+    transition:
+        color var(--transition-fast),
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+
+/* =========================================================
+   6. EDIT BUTTON
+========================================================= */
+
+.edit-task:hover {
+
+    color:
+        var(--accent-light);
+
+    background:
+        rgba(139, 92, 246, 0.10);
+
+    border-color:
+        rgba(139, 92, 246, 0.15);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   7. DELETE BUTTON
+========================================================= */
+
+.delete-task:hover {
+
+    color:
+        var(--danger);
+
+    background:
+        rgba(251, 113, 133, 0.08);
+
+    border-color:
+        rgba(251, 113, 133, 0.14);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   8. TASK APPEAR ANIMATION
+========================================================= */
+
+@keyframes taskAppear {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(12px)
+            scale(0.97);
+
+        filter:
+            blur(4px);
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:
+            blur(0);
+    }
+}
+
+
+/* =========================================================
+   9. TASK PRESS EFFECT
+========================================================= */
+
+.task-item:active {
+
+    transform:
+        scale(0.995);
+}
+
+
+/* =========================================================
+   10. MOBILE TASK CARDS
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .task-item {
+
+        align-items:
+            flex-start;
+
+        padding:
+            13px;
+
+        gap:
+            10px;
+    }
+
+
+    .task-content {
+
+        align-items:
+            flex-start;
+
+        gap:
+            10px;
+    }
+
+
+    .complete-toggle {
+
+        margin-top:
+            1px;
+    }
+
+
+    .task-text {
+
+        white-space:
+            normal;
+
+        overflow:
+            visible;
+
+        text-overflow:
+            clip;
+
+        word-break:
+            break-word;
+    }
+
+
+    .task-actions {
+
+        gap:
+            2px;
+    }
+
+
+    .task-actions button {
+
+        padding:
+            6px 7px;
+
+        font-size:
+            10px;
+    }
+}
+
+
+/* =========================================================
+   STEP 6 — COMPLETED TASK STATE
+========================================================= */
+
+
+/* =========================================================
+   1. COMPLETED CARD
+========================================================= */
+
+.task-item.completed {
+
+    border-color:
+        rgba(52, 211, 153, 0.16);
+
+    background:
+        rgba(52, 211, 153, 0.035);
+}
+
+
+/* =========================================================
+   2. COMPLETED CARD HOVER
+========================================================= */
+
+.task-item.completed:hover {
+
+    border-color:
+        rgba(52, 211, 153, 0.28);
+
+    background:
+        rgba(52, 211, 153, 0.055);
+}
+
+
+/* =========================================================
+   3. COMPLETED TOGGLE
+========================================================= */
+
+.task-item.completed .complete-toggle {
+
+    border-color:
+        var(--success);
+
+    background:
+        var(--gradient-success);
+
+    box-shadow:
+        0 0 18px
+        rgba(52, 211, 153, 0.22);
+}
+
+
+/* =========================================================
+   4. SHOW CHECKMARK
+========================================================= */
+
+.task-item.completed .checkmark {
+
+    opacity:
+        1;
+
+    transform:
+        scale(1)
+        rotate(0);
+}
+
+
+/* =========================================================
+   5. COMPLETED TEXT
+========================================================= */
+
+.task-item.completed .task-text {
+
+    color:
+        var(--text-muted);
+
+    text-decoration:
+        line-through;
+
+    text-decoration-color:
+        rgba(167, 139, 250, 0.55);
+
+    text-decoration-thickness:
+        1.5px;
+}
+
+
+/* =========================================================
+   6. COMPLETED TIME
+========================================================= */
+
+.task-item.completed .task-time {
+
+    color:
+        rgba(110, 231, 183, 0.65);
+}
+
+/* =========================================================
+   STEP 7 — INLINE EDITING
+========================================================= */
+
+
+/* =========================================================
+   1. EDITING CARD
+========================================================= */
+
+.task-item.editing {
+
+    border-color:
+        rgba(139, 92, 246, 0.35);
+
+    background:
+        rgba(139, 92, 246, 0.055);
+
+    box-shadow:
+        0 10px 35px
+        rgba(139, 92, 246, 0.10);
+}
+
+
+/* =========================================================
+   2. EDIT INPUT
+========================================================= */
+
+.edit-task-input {
+
+    width:
+        100%;
+
+    padding:
+        8px 10px;
+
+    border:
+        1px solid
+        rgba(167, 139, 250, 0.35);
+
+    border-radius:
+        9px;
+
+    outline:
+        none;
+
+    background:
+        rgba(0, 0, 0, 0.18);
+
+    color:
+        var(--text-primary);
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size:
+        14px;
+
+    font-weight:
+        500;
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+
+.edit-task-input:focus {
+
+    border-color:
+        var(--accent-light);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139, 92, 246, 0.08);
+}
+
+
+/* =========================================================
+   3. SAVE BUTTON
+========================================================= */
+
+.save-task {
+
+    color:
+        var(--success-light) !important;
+
+    background:
+        rgba(52, 211, 153, 0.08) !important;
+
+    border-color:
+        rgba(52, 211, 153, 0.15) !important;
+}
+
+
+.save-task:hover {
+
+    background:
+        rgba(52, 211, 153, 0.15) !important;
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   4. CANCEL BUTTON
+========================================================= */
+
+.cancel-edit {
+
+    color:
+        var(--text-secondary) !important;
+
+    background:
+        rgba(255, 255, 255, 0.04) !important;
+
+    border-color:
+        var(--border) !important;
+}
+
+
+.cancel-edit:hover {
+
+    color:
+        var(--text-primary) !important;
+
+    background:
+        rgba(255, 255, 255, 0.08) !important;
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   5. MOBILE EDITING
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .task-item.editing {
+
+        align-items:
+            flex-start;
+    }
+
+
+    .edit-task-input {
+
+        font-size:
+            13px;
+
+        padding:
+            8px;
+    }
+}
+
+
+/* =========================================================
+   STEP 8 — TASK DELETE ANIMATION
+========================================================= */
+
+
+/* =========================================================
+   1. REMOVING TASK
+========================================================= */
+
+.task-item.removing {
+
+    pointer-events:
+        none;
+
+    animation:
+        taskRemove 0.35s
+        cubic-bezier(0.4, 0, 1, 1)
+        forwards;
+}
+
+
+/* =========================================================
+   2. DELETE ANIMATION
+========================================================= */
+
+@keyframes taskRemove {
+
+    0% {
+
+        opacity:
+            1;
+
+        transform:
+            translateX(0)
+            scale(1);
+
+        max-height:
+            100px;
+    }
+
+
+    60% {
+
+        opacity:
+            0;
+
+        transform:
+            translateX(30px)
+            scale(0.96);
+
+    }
+
+
+    100% {
+
+        opacity:
+            0;
+
+        transform:
+            translateX(50px)
+            scale(0.9);
+
+        max-height:
+            0;
+
+        padding-top:
+            0;
+
+        padding-bottom:
+            0;
+
+        margin-top:
+            0;
+
+        margin-bottom:
+            0;
+
+        border-width:
+            0;
+    }
+}
+
+/* =========================================================
+   STEP 10 — PREMIUM MICRO-INTERACTIONS
+========================================================= */
+
+
+/* =========================================================
+   1. TASK CARD ENTRANCE
+========================================================= */
+
+.task-item {
+
+    animation:
+        taskAppear 0.45s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        both;
+
+    transform-origin:
+        center;
+
+}
+
+
+/* =========================================================
+   TASK APPEAR ANIMATION
+========================================================= */
+
+@keyframes taskAppear {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(14px)
+            scale(0.97);
+
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+}
+
+
+/* =========================================================
+   2. PREMIUM HOVER EFFECT
+========================================================= */
+
+.task-item:not(.removing):hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 14px 35px
+        rgba(0, 0, 0, 0.12);
+
+}
+
+
+/* =========================================================
+   3. TASK CONTENT TRANSITION
+========================================================= */
+
+.task-item {
+
+    transition:
+
+        transform 0.3s
+        cubic-bezier(0.22, 1, 0.36, 1),
+
+        box-shadow 0.3s ease,
+
+        border-color 0.3s ease,
+
+        background 0.3s ease;
+
+}
+
+
+/* =========================================================
+   4. COMPLETE BUTTON
+========================================================= */
+
+.complete-toggle {
+
+    transition:
+
+        transform 0.25s
+        cubic-bezier(0.22, 1, 0.36, 1),
+
+        box-shadow 0.25s ease,
+
+        background 0.25s ease;
+
+}
+
+
+.complete-toggle:hover {
+
+    transform:
+        scale(1.12);
+
+}
+
+
+.complete-toggle:active {
+
+    transform:
+        scale(0.88);
+
+}
+
+
+/* =========================================================
+   5. CHECKMARK ANIMATION
+========================================================= */
+
+.task-item.completed
+.complete-toggle
+.checkmark {
+
+    animation:
+        checkmarkPop 0.45s
+        cubic-bezier(0.34, 1.56, 0.64, 1);
+
+}
+
+
+@keyframes checkmarkPop {
+
+    0% {
+
+        opacity:
+            0;
+
+        transform:
+            scale(0.2)
+            rotate(-30deg);
+
+    }
+
+    65% {
+
+        opacity:
+            1;
+
+        transform:
+            scale(1.25)
+            rotate(8deg);
+
+    }
+
+    100% {
+
+        opacity:
+            1;
+
+        transform:
+            scale(1)
+            rotate(0);
+
+    }
+}
+
+
+/* =========================================================
+   6. TASK TEXT TRANSITION
+========================================================= */
+
+.task-text {
+
+    transition:
+
+        color 0.3s ease,
+
+        opacity 0.3s ease,
+
+        transform 0.3s ease;
+
+}
+
+
+.task-item.completed
+.task-text {
+
+    transform:
+        translateX(2px);
+
+}
+
+
+/* =========================================================
+   7. ACTION BUTTONS
+========================================================= */
+
+.task-actions button {
+
+    transition:
+
+        transform 0.2s
+        cubic-bezier(0.22, 1, 0.36, 1),
+
+        background 0.2s ease,
+
+        color 0.2s ease,
+
+        border-color 0.2s ease,
+
+        box-shadow 0.2s ease;
+
+}
+
+
+.task-actions button:hover {
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.task-actions button:active {
+
+    transform:
+        translateY(0)
+        scale(0.94);
+
+}
+
+
+/* =========================================================
+   8. EDITING STATE
+========================================================= */
+
+.task-item.editing {
+
+    transform:
+        translateY(-2px)
+        scale(1.005);
+
+    box-shadow:
+        0 12px 35px
+        rgba(139, 92, 246, 0.12);
+
+}
+
+
+/* =========================================================
+   9. EDIT INPUT FOCUS
+========================================================= */
+
+.edit-task-input {
+
+    transition:
+
+        border-color 0.25s ease,
+
+        box-shadow 0.25s ease,
+
+        background 0.25s ease,
+
+        transform 0.25s ease;
+
+}
+
+
+.edit-task-input:focus {
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* =========================================================
+   10. SAVE BUTTON
+========================================================= */
+
+.save-task:hover {
+
+    box-shadow:
+        0 5px 18px
+        rgba(52, 211, 153, 0.12);
+
+}
+
+
+/* =========================================================
+   11. DELETE ANIMATION
+========================================================= */
+
+.task-item.removing {
+
+    pointer-events:
+        none;
+
+    animation:
+        premiumTaskRemove
+        0.4s
+        cubic-bezier(0.4, 0, 1, 1)
+        forwards;
+
+}
+
+
+@keyframes premiumTaskRemove {
+
+    0% {
+
+        opacity:
+            1;
+
+        transform:
+            translateX(0)
+            scale(1);
+
+    }
+
+    45% {
+
+        opacity:
+            0.6;
+
+        transform:
+            translateX(15px)
+            scale(0.97);
+
+    }
+
+    100% {
+
+        opacity:
+            0;
+
+        transform:
+            translateX(55px)
+            scale(0.9);
+
+        max-height:
+            0;
+
+        margin:
+            0;
+
+        padding-top:
+            0;
+
+        padding-bottom:
+            0;
+
+    }
+
+}
+
+
+/* =========================================================
+   12. EMPTY STATE
+========================================================= */
+
+.empty-state {
+
+    transition:
+
+        opacity 0.35s ease,
+
+        transform 0.35s
+        cubic-bezier(0.22, 1, 0.36, 1);
+
+}
+
+
+.empty-state:hover {
+
+    transform:
+        translateY(-3px);
+
+}
+
+
+/* =========================================================
+   13. INPUT FOCUS
+========================================================= */
+
+#taskInput {
+
+    transition:
+
+        border-color 0.25s ease,
+
+        box-shadow 0.25s ease,
+
+        background 0.25s ease,
+
+        transform 0.25s ease;
+
+}
+
+
+#taskInput:focus {
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* =========================================================
+   14. ADD BUTTON
+========================================================= */
+
+#taskForm button[type="submit"] {
+
+    transition:
+
+        transform 0.25s
+        cubic-bezier(0.22, 1, 0.36, 1),
+
+        box-shadow 0.25s ease,
+
+        filter 0.25s ease;
+
+}
+
+
+#taskForm button[type="submit"]:hover {
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+#taskForm button[type="submit"]:active {
+
+    transform:
+        translateY(0)
+        scale(0.97);
+
+}
+
+
+/* =========================================================
+   15. MOBILE TOUCH EXPERIENCE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .task-item:hover {
+
+        transform:
+            none;
+
+    }
+
+
+    .task-item:active {
+
+        transform:
+            scale(0.99);
+
+    }
+
+
+    .task-actions button {
+
+        min-height:
+            38px;
+
+        min-width:
+            48px;
+
+    }
+
+
+    .complete-toggle {
+
+        min-width:
+            42px;
+
+        min-height:
+            42px;
+
+    }
+
+}
+
+
+/* =========================================================
+   16. ACCESSIBILITY — REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+
+        scroll-behavior:
+            auto !important;
+
+    }
+
+}
+
+/* =========================================================
+   STEP 11 — PREMIUM VISUAL DESIGN
+========================================================= */
+
+:root {
+
+    --premium-purple:
+        #8b5cf6;
+
+    --premium-violet:
+        #a78bfa;
+
+    --premium-blue:
+        #38bdf8;
+
+    --premium-cyan:
+        #22d3ee;
+
+    --premium-green:
+        #34d399;
+
+    --premium-pink:
+        #f472b6;
+
+    --premium-bg:
+        #080812;
+
+    --premium-surface:
+        rgba(255, 255, 255, 0.045);
+
+    --premium-border:
+        rgba(255, 255, 255, 0.09);
+
+    --premium-text:
+        #f8fafc;
+
+    --premium-muted:
+        #94a3b8;
+
+}
+
+/* =========================================================
+   PREMIUM BACKGROUND
+========================================================= */
+
+body {
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(139, 92, 246, 0.14),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(56, 189, 248, 0.10),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(244, 114, 182, 0.07),
+            transparent 32%
+        ),
+
+        var(--premium-bg);
+
+    color:
+        var(--premium-text);
+
+}
+
+/* =========================================================
+   AMBIENT BACKGROUND ANIMATION
+========================================================= */
+
+body::before {
+
+    content:
+        "";
+
+    position:
+        fixed;
+
+    inset:
+        -20%;
+
+    pointer-events:
+        none;
+
+    z-index:
+        -1;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(139, 92, 246, 0.07),
+            transparent 45%
+        );
+
+    filter:
+        blur(80px);
+
+    animation:
+        ambientGlow 12s
+        ease-in-out
+        infinite alternate;
+
+}
+
+
+@keyframes ambientGlow {
+
+    0% {
+
+        transform:
+            translate(
+                -4%,
+                -2%
+            )
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            translate(
+                3%,
+                2%
+            )
+            scale(1.08);
+
+    }
+
+    100% {
+
+        transform:
+            translate(
+                -2%,
+                4%
+            )
+            scale(1.03);
+
+    }
+
+}
+/* =========================================================
+   PREMIUM HEADINGS
+========================================================= */
+
+h1 {
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.045em;
+
+    line-height:
+        1.05;
+
+    background:
+        linear-gradient(
+            120deg,
+            #ffffff 0%,
+            #c4b5fd 45%,
+            #67e8f9 100%
+        );
+
+    -webkit-background-clip:
+        text;
+
+    background-clip:
+        text;
+
+    -webkit-text-fill-color:
+        transparent;
+
+}
+
+
+
+/* =========================================================
+   TASK TYPOGRAPHY
+========================================================= */
+
+.task-text {
+
+    font-weight:
+        550;
+
+    letter-spacing:
+        -0.012em;
+
+    line-height:
+        1.55;
+
+}
+
+
+.task-time {
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        0.015em;
+
+    opacity:
+        0.72;
+
+}
+
+
+/* =========================================================
+   PREMIUM TASK CARDS
+========================================================= */
+
+.task-item {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border:
+        1px solid
+        var(--premium-border);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+}
+
+.task-item::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        -120%;
+
+    width:
+        80%;
+
+    height:
+        100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.055),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+
+    pointer-events:
+        none;
+
+    transition:
+        left 0.7s
+        ease;
+
+}
+
+
+.task-item:hover::before {
+
+    left:
+        140%;
+
+}
+
+
+
+/* =========================================================
+   PREMIUM INPUT
+========================================================= */
+
+#taskInput {
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    border-color:
+        rgba(255, 255, 255, 0.10);
+
+    color:
+        #ffffff;
+
+}
+
+
+#taskInput::placeholder {
+
+    color:
+        rgba(148, 163, 184, 0.70);
+
+}
+
+
+#taskInput:focus {
+
+    border-color:
+        rgba(139, 92, 246, 0.65);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(139, 92, 246, 0.09),
+
+        0 8px 30px
+        rgba(139, 92, 246, 0.08);
+
+}
+
+
+/* =========================================================
+   PREMIUM ADD BUTTON
+========================================================= */
+
+#taskForm button[type="submit"] {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    border:
+        none;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--premium-purple),
+            var(--premium-blue)
+        );
+
+    box-shadow:
+        0 8px 25px
+        rgba(139, 92, 246, 0.20);
+
+}
+
+
+#taskForm button[type="submit"]::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 20%,
+            rgba(255,255,255,0.22),
+            transparent 80%
+        );
+
+    transform:
+        translateX(-120%);
+
+    transition:
+        transform 0.6s
+        ease;
+
+}
+
+
+#taskForm button[type="submit"]:hover::before {
+
+    transform:
+        translateX(120%);
+
+}
+
+
+#taskForm button[type="submit"]:hover {
+
+    box-shadow:
+        0 12px 32px
+        rgba(139, 92, 246, 0.30);
+
+}
+
+
+/* =========================================================
+   PREMIUM COUNTERS
+========================================================= */
+
+#pendingCount,
+#completedCount {
+
+    font-weight:
+        650;
+
+    letter-spacing:
+        -0.01em;
+
+}
+
+
+#pendingCount {
+
+    color:
+        var(--premium-violet);
+
+}
+
+
+#completedCount {
+
+    color:
+        var(--premium-green);
+
+}
+
+/* =========================================================
+   RESPONSIVE TYPOGRAPHY
+========================================================= */
+
+@media (max-width: 600px) {
+
+    h1 {
+
+        font-size:
+            clamp(
+                2rem,
+                9vw,
+                3rem
+            );
+
+    }
+
+
+    .task-text {
+
+        font-size:
+            14px;
+
+    }
+
+
+    .task-time {
+
+        font-size:
+            10px;
+
+    }
+
+}
+
+
+/* =========================================================
+   STEP 12 — PRODUCTIVITY PROGRESS
+========================================================= */
+
+.productivity-progress {
+
+    position:
+        relative;
+
+    margin:
+        22px 0 28px;
+
+    padding:
+        18px 20px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-radius:
+        18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139, 92, 246, 0.07),
+            rgba(56, 189, 248, 0.035)
+        );
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    overflow:
+        hidden;
+
+}
+
+
+.productivity-progress::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        160px;
+
+    height:
+        160px;
+
+    top:
+        -100px;
+
+    right:
+        -60px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(139, 92, 246, 0.12);
+
+    filter:
+        blur(40px);
+
+    pointer-events:
+        none;
+
+}
+
+
+/* =========================================================
+   PROGRESS HEADER
+========================================================= */
+
+.progress-header {
+
+    position:
+        relative;
+
+    z-index:
+        1;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    margin-bottom:
+        13px;
+
+}
+
+
+.progress-label {
+
+    display:
+        block;
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.02em;
+
+    color:
+        var(--premium-text);
+
+}
+
+
+.progress-message {
+
+    display:
+        block;
+
+    margin-top:
+        3px;
+
+    font-size:
+        11px;
+
+    color:
+        var(--premium-muted);
+
+}
+
+
+.progress-percentage {
+
+    flex-shrink:
+        0;
+
+    font-size:
+        18px;
+
+    font-weight:
+        800;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--premium-violet),
+            var(--premium-cyan)
+        );
+
+    -webkit-background-clip:
+        text;
+
+    background-clip:
+        text;
+
+    -webkit-text-fill-color:
+        transparent;
+
+}
+
+
+/* =========================================================
+   PROGRESS TRACK
+========================================================= */
+
+.progress-track {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    height:
+        7px;
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    overflow:
+        hidden;
+
+}
+
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+.progress-bar {
+
+    position:
+        relative;
+
+    height:
+        100%;
+
+    border-radius:
+        inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--premium-purple),
+            var(--premium-blue),
+            var(--premium-cyan)
+        );
+
+    box-shadow:
+        0 0 18px
+        rgba(56, 189, 248, 0.25);
+
+    transition:
+        width 0.7s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        );
+
+}
+
+
+/* =========================================================
+   PROGRESS SHIMMER
+========================================================= */
+
+.progress-bar::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        -50%;
+
+    width:
+        40%;
+
+    height:
+        100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.35),
+            transparent
+        );
+
+    animation:
+        progressShimmer 2.8s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes progressShimmer {
+
+    0% {
+
+        left:
+            -50%;
+
+    }
+
+    100% {
+
+        left:
+            120%;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .productivity-progress {
+
+        padding:
+            16px;
+
+        margin:
+            18px 0 23px;
+
+        border-radius:
+            16px;
+
+    }
+
+
+    .progress-label {
+
+        font-size:
+            12px;
+
+    }
+
+
+    .progress-message {
+
+        font-size:
+            10px;
+
+    }
+
+
+    .progress-percentage {
+
+        font-size:
+            16px;
+
+    }
+
+}
