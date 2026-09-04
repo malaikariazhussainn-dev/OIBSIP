@@ -12,7 +12,7 @@
 
 ## 🌐 Live Demo
 
-🚀 **[View Live Website](YOUR_LIVE_DEMO_LINK)**
+🚀 **[View Live Website](https://malaikariazhussainn-dev.github.io/OIBSIP/WebDev_L2_Tribute%20Page/)**
 
 Experience the fully responsive Imran Khan Tribute Page directly in your browser.
 
