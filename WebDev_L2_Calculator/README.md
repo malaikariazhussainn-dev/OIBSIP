@@ -10,8 +10,6 @@ This project focuses on creating a clean user interface, smooth interactions, re
 🚀 **Live Website:**  
 [View Calculator Live](https://malaikariazhussainn-dev.github.io/OIBSIP/WebDev_L2_Calculator/)
 
-> Replace `YOUR-LIVE-LINK-HERE` with your GitHub Pages or deployment URL.
-
 ---
 
 ## 📌 Project Overview
